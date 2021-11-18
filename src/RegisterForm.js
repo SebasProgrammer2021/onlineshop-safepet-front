@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import Benefits from "./components/Benefits";
+import { Link } from "react-router-dom";
 
 const RegisterhtmlForm = () => {
+  const [benefitsSeleted, setBenefitsSeleted] = useState([]);
+
   const [customerData, setCustomerData] = useState({
     cedula: "",
     nombre: "",
     apellido: "",
     direccion: "",
     telefono: "",
+    beneficios: benefitsSeleted,
   });
 
   const handleChange = (e) => {
@@ -17,19 +21,24 @@ const RegisterhtmlForm = () => {
     });
   };
 
-  console.log(customerData);
+  const handleSubmit = () => { };
 
   return (
     <div>
+      <button className="">
+        <Link to='/#'>Home</Link>
+      </button>
       <div className="grid min-h-screen place-items-center">
         <div className="w-11/12 p-12 bg-white sm:w-8/12 md:w-1/2 lg:w-5/12">
           <h1 className="text-xl font-semibold">
-            Hello there 👋,{" "}
+            Hello there 👋
+          </h1>
+          <h1 className="text-xl font-semibold">
             <span className="font-normal">
-              please fill in your inhtmlFormation to continue
+              Llene este formulario para registrar un afiliado
             </span>
           </h1>
-          <form className="mt-6">
+          <form className="mt-6" method="POST">
             <span className="w-1/2">
               <label
                 htmlFor="cedula"
@@ -97,7 +106,7 @@ const RegisterhtmlForm = () => {
               type="text"
               name="direccion"
               onChange={handleChange}
-              placeholder="john.doe@company.com"
+              placeholder="Cra,Av 12 # 4N"
               autoComplete="email"
               className="block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner"
               required
@@ -110,7 +119,7 @@ const RegisterhtmlForm = () => {
             </label>
             <input
               id="telefono"
-              type="text"
+              type="number"
               name="telefono"
               onChange={handleChange}
               placeholder="0000000"
@@ -119,17 +128,24 @@ const RegisterhtmlForm = () => {
               required
             />
             <div className="mt-10">
-              <Benefits></Benefits>
+              <Benefits
+                benefitsSeleted={benefitsSeleted}
+                setBenefitsSeleted={setBenefitsSeleted}
+              ></Benefits>
             </div>
             <button
-              type="submit"
               className="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none"
+              // onClick={handleSubmit}
+              type="submit"
+              disabled={true}
             >
               Registrarse
             </button>
           </form>
         </div>
       </div>
+
+
     </div>
   );
 };
