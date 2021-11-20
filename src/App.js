@@ -1,8 +1,8 @@
 import * as React from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import "./App.css";
-import Home from "./Home";
-import RegisterForm from "./RegisterForm";
+import { Routes, Route } from "react-router-dom";
+import "./static/styles/App.css";
+import Home from "./pages/Home";
+import RegisterForm from "./pages/RegisterForm";
 
 const App = () => {
   return (

@@ -51,13 +51,11 @@ const Benefits = ({ benefitsSeleted, setBenefitsSeleted }) => {
             <span className="text-right w-full">${`${costo}`}</span>
             <input
               className="absolute opacity-0 left-0 top-0 cursor-pointer"
-              // checked={checkedState.checked}
               name={nombre}
               onChange={() => handleChange(index, id)}
               type="checkbox"
               value={nombre}
               selected={benefitsSeleted.includes(id)}
-            // checked="checked"
             />
             <span className="h-6 w-6 checkmark absolute top-0 left-0 bg-gray-400"></span>
           </label>

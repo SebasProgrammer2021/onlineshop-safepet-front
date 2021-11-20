@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Benefits from "./components/Benefits";
+import Benefits from "../components/Benefits";
 import { Link } from "react-router-dom";
 
 const RegisterhtmlForm = () => {
@@ -15,6 +15,7 @@ const RegisterhtmlForm = () => {
   });
 
   const handleChange = (e) => {
+    console.log(e.target.name, "---", e.target.value);
     setCustomerData({
       ...customerData,
       [e.target.name]: e.target.value,
