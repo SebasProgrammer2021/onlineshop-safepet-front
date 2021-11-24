@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import Benefits from "components/Benefits/Benefits";
 import config from "../../config";
 import Alert from "components/Alert/Alert";
+import Payment from "views/Payment";
 const axios = require("axios");
-
+// lightBlue,
 export default function Register() {
   const [benefitsSeleted, setBenefitsSeleted] = useState([]);
   const [customerData, setCustomerData] = useState({
@@ -15,6 +16,11 @@ export default function Register() {
     beneficios: benefitsSeleted,
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [proceedPayment, setProceedPayment] = useState(false);
+  const [paymentMethodSelected, setPaymentMethodSelected] = useState({
+    paymentMethod: "",
+  });
+  const [downloadAvailable, setDownloadAvailable] = useState();
 
   const handleChange = (e) => {
     setCustomerData({
@@ -29,10 +35,9 @@ export default function Register() {
     axios
       .post(`${config().SERVER_URL}/customer/add`, customerData)
       .then(function (response) {
-        alert("registro exitoso")
-        console.log(response);
-        setIsLoading(false);
-        e.target.reset();
+        alert("registro exitoso");
+        setDownloadAvailable(true);
+        // e.target.reset();
       })
       .catch(function (error) {
         console.log(error);
@@ -48,7 +53,7 @@ export default function Register() {
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="text-center mb-3">
                   <h6 className="text-blueGray-500 text-lg font-bold">
-                    Registro
+                    {!proceedPayment ? "Registro" : "Pago"}
                   </h6>
                 </div>
                 <hr className="mt-6 border-b-1 border-blueGray-300" />
@@ -56,100 +61,143 @@ export default function Register() {
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                 <fieldset disabled={isLoading}>
                   <form onSubmit={handleSubmit}>
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        Cedula
-                      </label>
-                      <input
-                        name="cedula"
-                        autoFocus
-                        onChange={handleChange}
-                        type="number"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="cedula"
-                      />
-                    </div>
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        Nombre
-                      </label>
-                      <input
-                        name="nombre"
-                        onChange={handleChange}
-                        type="text"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Name"
-                      />
-                    </div>
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        Apellido
-                      </label>
-                      <input
-                        name="apellido"
-                        onChange={handleChange}
-                        type="text"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Name"
-                      />
-                    </div>
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        Dirección
-                      </label>
-                      <input
-                        name="direccion"
-                        onChange={handleChange}
-                        type="text"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Email"
-                      />
-                    </div>
-
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        Teléfono
-                      </label>
-                      <input
-                        name="telefono"
-                        onChange={handleChange}
-                        type="number"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        placeholder="Password"
-                      />
-                    </div>
-                    <hr className="mt-6 border-b-1 border-blueGray-300" />
-                    <div className="mt-8">
-                      <Benefits
-                        benefitsSeleted={benefitsSeleted}
-                        setBenefitsSeleted={setBenefitsSeleted}
-                      ></Benefits>
-                    </div>
+                    {!proceedPayment ? (
+                      <>
+                        {" "}
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="grid-password"
+                          >
+                            Cedula
+                          </label>
+                          <input
+                            name="cedula"
+                            autoFocus
+                            onChange={handleChange}
+                            type="number"
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            placeholder="cedula"
+                          />
+                        </div>
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="grid-password"
+                          >
+                            Nombre
+                          </label>
+                          <input
+                            name="nombre"
+                            onChange={handleChange}
+                            type="text"
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            placeholder="Name"
+                          />
+                        </div>
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="grid-password"
+                          >
+                            Apellido
+                          </label>
+                          <input
+                            name="apellido"
+                            onChange={handleChange}
+                            type="text"
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            placeholder="Name"
+                          />
+                        </div>
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="grid-password"
+                          >
+                            Dirección
+                          </label>
+                          <input
+                            name="direccion"
+                            onChange={handleChange}
+                            type="text"
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            placeholder="Email"
+                          />
+                        </div>
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="grid-password"
+                          >
+                            Teléfono
+                          </label>
+                          <input
+                            name="telefono"
+                            onChange={handleChange}
+                            type="number"
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            placeholder="Password"
+                          />
+                        </div>
+                        <hr className="mt-6 border-b-1 border-blueGray-300" />
+                        <div className="mt-8">
+                          <Benefits
+                            benefitsSeleted={benefitsSeleted}
+                            setBenefitsSeleted={setBenefitsSeleted}
+                          ></Benefits>
+                        </div>
+                      </>
+                    ) : (
+                      <Payment
+                        paymentMethodSelected={paymentMethodSelected}
+                        setPaymentMethodSelected={setPaymentMethodSelected}
+                      ></Payment>
+                    )}
                     <div className="text-center mt-6">
-                      <button
-                        className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                        type="submit"
-                      >
-                        Registrar Afiliado
-                      </button>
+                      {!proceedPayment ? (
+                        <button
+                          className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setProceedPayment(true);
+                          }}
+                        >
+                          Continuar
+                        </button>
+                      ) : (
+                        <>
+                          <button
+                            className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                            type="submit"
+                          >
+                            Registrar Afiliado
+                          </button>
+                        </>
+                      )}
                     </div>
                   </form>
                 </fieldset>
+                {downloadAvailable ? (
+                  <div className="mt-12">
+                    <a
+                      className="bg-lightBlue-600 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                      href="https://docs.google.com/document/d/1glAJl785pocdj51yfRjXcmy3JqsPdnXU/edit?usp=sharing&ouid=104637590737949013945&rtpof=true&sd=true"
+                      target="_blank"
+                      rel="noreferrer"
+                      download="contrato"
+                      onClick={(e) => {
+                        setProceedPayment(false);
+                        setIsLoading(false);
+                        setDownloadAvailable(false);
+                      }}
+                    >
+                      Descargar contrato
+                    </a>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>
