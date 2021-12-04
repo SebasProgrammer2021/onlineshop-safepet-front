@@ -3,10 +3,21 @@ import Benefits from "components/Benefits/Benefits";
 import config from "../../config";
 import Alert from "components/Alert/Alert";
 import Payment from "views/Payment";
+import RegisterPetsForm from "../RegisterPetsForm";
 const axios = require("axios");
 // lightBlue,
+
 export default function Register() {
   const [benefitsSeleted, setBenefitsSeleted] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [proceedPayment, setProceedPayment] = useState(false);
+  const [proceedRegisterPet, setproceedRegisterPet] = useState(false);
+  const [paymentMethodSelected, setPaymentMethodSelected] = useState({
+    paymentMethod: "",
+  });
+  const [downloadAvailable, setDownloadAvailable] = useState();
+  const [userPets, setUserPets] = useState([]);
   const [customerData, setCustomerData] = useState({
     cedula: "",
     nombre: "",
@@ -14,13 +25,10 @@ export default function Register() {
     direccion: "",
     telefono: "",
     beneficios: benefitsSeleted,
+    valor: "",
+    pets: userPets,
   });
-  const [isLoading, setIsLoading] = useState(false);
-  const [proceedPayment, setProceedPayment] = useState(false);
-  const [paymentMethodSelected, setPaymentMethodSelected] = useState({
-    paymentMethod: "",
-  });
-  const [downloadAvailable, setDownloadAvailable] = useState();
+  let title;
 
   const handleChange = (e) => {
     setCustomerData({
@@ -31,18 +39,29 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    customerData.valor = total;
     setIsLoading(true);
-    axios
-      .post(`${config().SERVER_URL}/customer/add`, customerData)
-      .then(function (response) {
-        alert("registro exitoso");
-        setDownloadAvailable(true);
-        // e.target.reset();
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    console.log("entro");
+    console.log(userPets, "pets");
+    // axios
+    //   .post(`${config().SERVER_URL}/customer/add`, customerData)
+    //   .then(function (response) {
+    //     alert("registro exitoso");
+    //     setDownloadAvailable(true);
+    //     // e.target.reset();
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
   };
+
+  if (!proceedRegisterPet) {
+    title = "Registro cliente";
+  } else if (!proceedPayment) {
+    title = "Registro mascota";
+  } else {
+    title = "Seleccionar método de pago";
+  }
 
   return (
     <>
@@ -53,7 +72,7 @@ export default function Register() {
               <div className="rounded-t mb-0 px-6 py-6">
                 <div className="text-center mb-3">
                   <h6 className="text-blueGray-500 text-lg font-bold">
-                    {!proceedPayment ? "Registro" : "Pago"}
+                    {title}
                   </h6>
                 </div>
                 <hr className="mt-6 border-b-1 border-blueGray-300" />
@@ -62,92 +81,100 @@ export default function Register() {
                 <fieldset disabled={isLoading}>
                   <form onSubmit={handleSubmit}>
                     {!proceedPayment ? (
-                      <>
-                        {" "}
-                        <div className="relative w-full mb-3">
-                          <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                            Cedula
-                          </label>
-                          <input
-                            name="cedula"
-                            autoFocus
-                            onChange={handleChange}
-                            type="number"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            placeholder="cedula"
-                          />
-                        </div>
-                        <div className="relative w-full mb-3">
-                          <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                            Nombre
-                          </label>
-                          <input
-                            name="nombre"
-                            onChange={handleChange}
-                            type="text"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            placeholder="Name"
-                          />
-                        </div>
-                        <div className="relative w-full mb-3">
-                          <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                            Apellido
-                          </label>
-                          <input
-                            name="apellido"
-                            onChange={handleChange}
-                            type="text"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            placeholder="Name"
-                          />
-                        </div>
-                        <div className="relative w-full mb-3">
-                          <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                            Dirección
-                          </label>
-                          <input
-                            name="direccion"
-                            onChange={handleChange}
-                            type="text"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            placeholder="Email"
-                          />
-                        </div>
-                        <div className="relative w-full mb-3">
-                          <label
-                            className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-                            htmlFor="grid-password"
-                          >
-                            Teléfono
-                          </label>
-                          <input
-                            name="telefono"
-                            onChange={handleChange}
-                            type="number"
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                            placeholder="Password"
-                          />
-                        </div>
-                        <hr className="mt-6 border-b-1 border-blueGray-300" />
-                        <div className="mt-8">
-                          <Benefits
-                            benefitsSeleted={benefitsSeleted}
-                            setBenefitsSeleted={setBenefitsSeleted}
-                          ></Benefits>
-                        </div>
-                      </>
+                      !proceedRegisterPet ? (
+                        <>
+                          {" "}
+                          <div className="relative w-full mb-3">
+                            <label
+                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                              htmlFor="grid-password"
+                            >
+                              Cedula
+                            </label>
+                            <input
+                              name="cedula"
+                              autoFocus
+                              onChange={handleChange}
+                              type="number"
+                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                              placeholder="cedula"
+                            />
+                          </div>
+                          <div className="relative w-full mb-3">
+                            <label
+                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                              htmlFor="grid-password"
+                            >
+                              Nombre
+                            </label>
+                            <input
+                              name="nombre"
+                              onChange={handleChange}
+                              type="text"
+                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                              placeholder="Name"
+                            />
+                          </div>
+                          <div className="relative w-full mb-3">
+                            <label
+                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                              htmlFor="grid-password"
+                            >
+                              Apellido
+                            </label>
+                            <input
+                              name="apellido"
+                              onChange={handleChange}
+                              type="text"
+                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                              placeholder="Name"
+                            />
+                          </div>
+                          <div className="relative w-full mb-3">
+                            <label
+                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                              htmlFor="grid-password"
+                            >
+                              Dirección
+                            </label>
+                            <input
+                              name="direccion"
+                              onChange={handleChange}
+                              type="text"
+                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                              placeholder="Email"
+                            />
+                          </div>
+                          <div className="relative w-full mb-3">
+                            <label
+                              className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                              htmlFor="grid-password"
+                            >
+                              Teléfono
+                            </label>
+                            <input
+                              name="telefono"
+                              onChange={handleChange}
+                              type="number"
+                              className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                              placeholder="Password"
+                            />
+                          </div>
+                          <hr className="mt-6 border-b-1 border-blueGray-300" />
+                          <div className="mt-8">
+                            <Benefits
+                              benefitsSeleted={benefitsSeleted}
+                              setBenefitsSeleted={setBenefitsSeleted}
+                              setTotal={setTotal}
+                              total={total}
+                            ></Benefits>
+                          </div>
+                        </>
+                      ) : (
+                        <RegisterPetsForm
+                          userPets={userPets}
+                        ></RegisterPetsForm>
+                      )
                     ) : (
                       <Payment
                         paymentMethodSelected={paymentMethodSelected}
@@ -156,15 +183,27 @@ export default function Register() {
                     )}
                     <div className="text-center mt-6">
                       {!proceedPayment ? (
-                        <button
-                          className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            setProceedPayment(true);
-                          }}
-                        >
-                          Continuar
-                        </button>
+                        !proceedRegisterPet ? (
+                          <button
+                            className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setproceedRegisterPet(true);
+                            }}
+                          >
+                            Continuar
+                          </button>
+                        ) : (
+                          <button
+                            className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setProceedPayment(true);
+                            }}
+                          >
+                            Continuar
+                          </button>
+                        )
                       ) : (
                         <>
                           <button

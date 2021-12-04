@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import config from "config";
 const axios = require("axios");
 
-export default function Benefits({ benefitsSeleted, setBenefitsSeleted }) {
+export default function Benefits({
+  benefitsSeleted,
+  setBenefitsSeleted,
+  setTotal,
+  total,
+}) {
   const [data, setData] = useState();
   const [checkedState, setCheckedState] = useState(new Array(10).fill(false));
-  const [total, setTotal] = useState(0);
 
   const getFormattedPrice = (price) => `$${price.toFixed(2)}`;
 

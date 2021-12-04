@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
+// sidebar Dashboard
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   return (
@@ -78,9 +79,9 @@ export default function Sidebar() {
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+            {/* <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               Admin Layout Pages
-            </h6>
+            </h6> */}
             {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">
@@ -102,7 +103,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Dashboard
+                  Tablero Admnistrativo
                 </Link>
               </li>
 
@@ -110,11 +111,12 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/settings") !== -1
+                    (window.location.href.indexOf("/admin/ConsultCopayment") !==
+                    -1
                       ? "text-lightBlue-500 hover:text-lightBlue-600"
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
-                  to="/admin/settings"
+                  to="/admin/ConsultCopayment"
                 >
                   <i
                     className={
@@ -124,7 +126,7 @@ export default function Sidebar() {
                         : "text-blueGray-300")
                     }
                   ></i>{" "}
-                  Settings
+                  Copago
                 </Link>
               </li>
 
@@ -152,14 +154,14 @@ export default function Sidebar() {
             </ul>
 
             {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
+            {/* <hr className="my-4 md:min-w-full" /> */}
             {/* Heading */}
-            <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
+            {/* <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               Auth Layout Pages
-            </h6>
+            </h6> */}
             {/* Navigation */}
 
-            <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
+            {/* <ul className="md:flex-col md:min-w-full flex flex-col list-none md:mb-4">
               <li className="items-center">
                 <Link
                   className="text-blueGray-700 hover:text-blueGray-500 text-xs uppercase py-3 font-bold block"
@@ -179,7 +181,7 @@ export default function Sidebar() {
                   Register
                 </Link>
               </li>
-            </ul>
+            </ul> */}
 
             {/* Divider */}
             <hr className="my-4 md:min-w-full" />
@@ -196,7 +198,7 @@ export default function Sidebar() {
                   to="/landing"
                 >
                   <i className="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>{" "}
-                  Landing Page
+                  Notus React
                 </Link>
               </li>
 
