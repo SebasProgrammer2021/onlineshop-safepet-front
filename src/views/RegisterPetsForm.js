@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 
-const RegisterPetsForm = ({ userPets }) => {
-  const [petData, setPetData] = useState({
-    nombre: "",
-    edad: "",
-    raza: "",
-  });
-
+const RegisterPetsForm = ({ userPets, petData, setPetData }) => {
   const handleChange = (e) => {
     setPetData({
       ...petData,
@@ -19,6 +13,7 @@ const RegisterPetsForm = ({ userPets }) => {
     userPets.push(petData);
     setPetData({ nombre: "", edad: "", raza: "" });
   };
+  // console.log(userPets);
 
   return (
     <>

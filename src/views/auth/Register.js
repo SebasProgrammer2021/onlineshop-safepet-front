@@ -16,6 +16,12 @@ export default function Register() {
   const [paymentMethodSelected, setPaymentMethodSelected] = useState({
     paymentMethod: "",
   });
+  const [petData, setPetData] = useState({
+    nombre: "",
+    edad: "",
+    raza: "",
+  });
+
   const [downloadAvailable, setDownloadAvailable] = useState();
   const [userPets, setUserPets] = useState([]);
   const [customerData, setCustomerData] = useState({
@@ -39,20 +45,19 @@ export default function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    customerData.valor = total;
+    customerData.valor = total * userPets.length;
     setIsLoading(true);
-    console.log("entro");
-    console.log(userPets, "pets");
-    // axios
-    //   .post(`${config().SERVER_URL}/customer/add`, customerData)
-    //   .then(function (response) {
-    //     alert("registro exitoso");
-    //     setDownloadAvailable(true);
-    //     // e.target.reset();
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
+
+    axios
+      .post(`${config().SERVER_URL}/customer/add`, customerData)
+      .then(function (response) {
+        alert("registro exitoso");
+        setDownloadAvailable(true);
+        // e.target.reset();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   if (!proceedRegisterPet) {
@@ -173,6 +178,8 @@ export default function Register() {
                       ) : (
                         <RegisterPetsForm
                           userPets={userPets}
+                          petData={petData}
+                          setPetData={setPetData}
                         ></RegisterPetsForm>
                       )
                     ) : (
