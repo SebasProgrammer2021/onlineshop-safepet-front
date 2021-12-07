@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
+import config from "../../config";
+const axios = require("axios");
 
 // components
 
 export default function CardCopayment() {
+  const [cedula, setCedula] = useState();
+  const [data, setData] = useState();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(cedula);
+    axios
+      .post(`${config().SERVER_URL}/customer/consultCopago`, { cedula: cedula })
+      .then(function (response) {
+        setData(response.data.data[0].copago);
+        // e.target.reset();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
@@ -20,7 +39,7 @@ export default function CardCopayment() {
           </div>
         </div>
         <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-          <form>
+          <form onSubmit={handleSubmit}>
             <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Información del usuario
             </h6>
@@ -36,6 +55,9 @@ export default function CardCopayment() {
                   <input
                     autoFocus
                     type="number"
+                    onChange={(e) => {
+                      setCedula(e.target.value);
+                    }}
                     className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                   />
                 </div>
@@ -43,7 +65,7 @@ export default function CardCopayment() {
               <div className="w-full lg:w-6/12 px-4 mt-8">
                 <button
                   className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                  type="button"
+                  type="submit"
                 >
                   Consultar
                 </button>
@@ -94,9 +116,9 @@ export default function CardCopayment() {
                 </div>
               </div> */}
             </div>
-
             <hr className="mt-6 border-b-1 border-blueGray-300" />
-
+            copago:{""}
+            {data}
             {/* <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
               Contact Information
             </h6>
