@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 
 import CardTable from "components/Cards/CardTable.js";
 
-export default function Tables() {
+export default function AffiliateModule() {
   return (
     <>
-      <h2 class="text-white text-3xl font-semibold relative pt-12 pb-16 px-4">Afiliados</h2>
+      <h2 className="text-white text-3xl font-semibold relative pt-12 pb-16 px-4">Afiliados</h2>
       <div className="px-4 mb-12">
         <Link
           to="/auth/register"

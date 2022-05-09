@@ -13,7 +13,7 @@ import FooterAdmin from "components/Footers/FooterAdmin.js";
 import Dashboard from "views/admin/Dashboard.js";
 import Maps from "views/admin/Maps.js";
 import Settings from "views/admin/Settings.js";
-import Tables from "views/admin/Tables.js";
+import AffiliateModule from "views/admin/AffiliateModule.js";
 import ConsultCopayment from "views/admin/ConsultCopayment";
 
 export default function Admin() {
@@ -34,7 +34,7 @@ export default function Admin() {
               component={ConsultCopayment}
             />
             {/* <Route path="/admin/settings" exact component={Settings} /> */}
-            <Route path="/admin/tables" exact component={Tables} />
+            <Route path="/admin/affiliate" exact component={AffiliateModule} />
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>
           <FooterAdmin />
