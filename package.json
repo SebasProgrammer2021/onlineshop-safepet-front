@@ -1,8 +1,12 @@
 {
-  "name": "notus-react",
+  "name": "safepet",
   "version": "1.1.0",
-  "description": "Notus React - A free Tailwind CSS and React UI Kit and Admin by Creative Tim.",
-  "repository": "https://github.com/creativetimofficial/notus-react",
+  "author": {
+    "name": "Sebastián Tobon, Rodrigo Acosta, Sebastián Londoño Valencia"
+  },
+  "description": "Software 3 subject final project",
+  "repository": "https://github.com/SebasProgrammer2021/onlineshop-safepet-front",
+  "homepage": "https://safepet.com.co",
   "license": "MIT",
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.15.3",
@@ -33,7 +37,6 @@
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm run build:tailwind && npm start",
     "build:tailwind": "tailwind build src/assets/styles/index.css -o src/assets/styles/tailwind.css"
   },
-  "homepage": "https://SebasProgrammer2021/onlineshop-safepet-back",
   "eslintConfig": {
     "extends": "react-app"
   },
