@@ -6,7 +6,7 @@
   },
   "description": "Software 3 subject final project",
   "repository": "https://github.com/SebasProgrammer2021/onlineshop-safepet-front",
-  "homepage": "https://safepet.com.co",
+  "homepage": "https://SebasProgrammer2021/onlineshop-safepet-front",
   "license": "MIT",
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.15.3",

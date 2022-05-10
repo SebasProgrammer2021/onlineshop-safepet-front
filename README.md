@@ -95,15 +95,6 @@ We also feature the following 18 dynamic components:
 * [Useful Links](#useful-links)
 * [Resources](#resources)
 
-## Versions
-
-[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/angular.jpg?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/notus-angular?ref=nr-github-readme)[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/js.png?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/notus-js?ref=nr-github-readme)[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/nextjs.jpg?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/notus-nextjs?ref=nr-github-readme)[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/react.jpg?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/notus-react?ref=nr-github-readme)[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/svelte.jpg?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/notus-svelte?ref=nr-github-readme)[<img src="https://github.com/creativetimofficial/public-assets/blob/master/logos/vue.jpg?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/vue-notus?ref=nr-github-readme)
-
-
-| Angular | JavaScript / HTML | NextJS | React | Svelte | VueJS |
-| :---: | :---: | :---: | :---: | :---: | :---: |
-| [![Notus Angular](https://github.com/creativetimofficial/public-assets/blob/master/notus-angular/notus-angular.jpg?raw=true)](https://www.creative-tim.com/product/notus-angular?ref=nr-github-readme)  | [![Notus JS](https://github.com/creativetimofficial/public-assets/blob/master/notus-js/notus-js.jpg?raw=true)](https://www.creative-tim.com/product/notus-js?ref=nr-github-readme)  | [![Notus NextJS](https://github.com/creativetimofficial/public-assets/blob/master/notus-nextjs/notus-nextjs.jpg?raw=true)](https://www.creative-tim.com/product/notus-nextjs?ref=nr-github-readme)  | [![Notus React](https://github.com/creativetimofficial/public-assets/blob/master/notus-react/notus-react.jpg?raw=true)](https://www.creative-tim.com/product/notus-react?ref=nr-github-readme)  | [![Notus Svelte](https://github.com/creativetimofficial/public-assets/blob/master/notus-svelte/notus-svelte.jpg?raw=true)](https://www.creative-tim.com/product/notus-svelte?ref=nr-github-readme)  | [![Vue Notus](https://github.com/creativetimofficial/public-assets/blob/master/vue-notus/vue-notus.jpg?raw=true)](https://www.creative-tim.com/product/vue-notus?ref=nr-github-readme)
-
 ## Documentation
 The documentation for the Notus React is hosted at our <a href="https://www.creative-tim.com/learning-lab/tailwind/react/overview/notus?ref=nr-readme" target="_blank">website</a>.
 
@@ -223,16 +214,6 @@ We use GitHub Issues as the official bug tracker for the Notus React. Here are s
 - Check our Bundles <a href="https://www.creative-tim.com/bundles?ref=nr-readme" target="_blank">here</a>
 - Check our awesome builder <a href="https://www.creative-tim.com/builder/argon?ref=nr-readme" target="_blank">here</a>
 - Check Tailwind Starter Kit, the project behind this product <a href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit/presentation?ref=nr-readme" target="_blank">here</a>
-
-### Social Media
-
-Twitter: <a href="https://twitter.com/CreativeTim" target="_blank">https://twitter.com/CreativeTim</a>
-
-Facebook: <a href="https://www.facebook.com/CreativeTim" target="_blank">https://www.facebook.com/CreativeTim</a>
-
-Dribbble: <a href="https://dribbble.com/creativetim" target="_blank">https://dribbble.com/creativetim</a>
-
-Instagram: <a href="https://www.instagram.com/creativetimofficial/" target="_blank">https://www.instagram.com/creativetimofficial/</a>
 
 
 ## Resources
