@@ -4,8 +4,8 @@
   "author": {
     "name": "Sebastián Tobon, Rodrigo Acosta, Sebastián Londoño Valencia"
   },
+  "homepage": "https://SebasProgrammer2021.github.io/onlineshop-safepet-front",
   "description": "Software 3 subject final project",
-  "homepage": "https://SebasProgrammer2021/onlineshop-safepet-front",
   "license": "MIT",
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.15.3",
@@ -26,8 +26,7 @@
     "tailwindcss": "2.0.4"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy" : "npm run build&&gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build && gulp licenses",
     "test": "react-scripts test",
